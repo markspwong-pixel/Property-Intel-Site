@@ -117,19 +117,13 @@ export default function App() {
             )}
 
             {activeTab === 'overview' && (
-              <>
-                <OverviewView
-                  districts={SINGAPORE_DISTRICTS}
-                  onSelectDistrict={(id) => {
-                    setSelectedDistrictId(id);
-                    setActiveTab('market-trends');
-                  }}
-                />
-                <DisqusForum
-                  pageIdentifier="propintel-singapore-overview"
-                  title="Singapore Real Estate Macro Discussion"
-                />
-              </>
+              <OverviewView
+                districts={SINGAPORE_DISTRICTS}
+                onSelectDistrict={(id) => {
+                  setSelectedDistrictId(id);
+                  setActiveTab('market-trends');
+                }}
+              />
             )}
 
             {activeTab === 'portfolio' && (

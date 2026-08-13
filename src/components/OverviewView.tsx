@@ -1,5 +1,6 @@
 import React from 'react';
 import { DistrictData } from '../types';
+import { DisqusForum } from './DisqusForum';
 
 interface OverviewViewProps {
   districts: DistrictData[];
@@ -142,6 +143,12 @@ export const OverviewView: React.FC<OverviewViewProps> = ({ districts, onSelectD
           </div>
         </div>
       </div>
+
+      {/* Discussion Forum under Overview Section */}
+      <DisqusForum
+        pageIdentifier="propintel-singapore-overview"
+        title="Singapore Real Estate Macro Overview Discussion"
+      />
     </div>
   );
 };
