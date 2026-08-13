@@ -1,0 +1,6 @@
+{
+  "name": "PropIntel SG",
+  "description": "Institutional real estate terminal and Singapore district investment analytics dashboard.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
