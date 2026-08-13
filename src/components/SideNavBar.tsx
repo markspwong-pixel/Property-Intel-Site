@@ -20,6 +20,7 @@ export const SideNavBar: React.FC<SideNavBarProps> = ({
     { id: 'market-trends', label: 'Market Trends', icon: 'trending_up' },
     { id: 'portfolio', label: 'Portfolio', icon: 'account_balance_wallet' },
     { id: 'analytics', label: 'Analytics', icon: 'analytics' },
+    { id: 'discussion', label: 'Discussion Forum', icon: 'forum' },
   ];
 
   return (

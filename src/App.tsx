@@ -7,6 +7,7 @@ import { MarketTrendsView } from './components/MarketTrendsView';
 import { OverviewView } from './components/OverviewView';
 import { PortfolioView } from './components/PortfolioView';
 import { AnalyticsView } from './components/AnalyticsView';
+import { DisqusForum } from './components/DisqusForum';
 import { DeepDiveModal } from './components/DeepDiveModal';
 import { ExportReportModal } from './components/ExportReportModal';
 import { NotificationsModal } from './components/NotificationsModal';
@@ -51,6 +52,8 @@ export default function App() {
         return 'Portfolio Tracker';
       case 'analytics':
         return 'Institutional Analytics';
+      case 'discussion':
+        return 'Discussion Forum';
       default:
         return 'District Insights';
     }
@@ -90,36 +93,71 @@ export default function App() {
         <main className="flex-1 mt-16 p-6 pb-12 overflow-y-auto">
           <div className="max-w-[1440px] mx-auto space-y-6">
             {activeTab === 'market-trends' && (
-              <MarketTrendsView
-                districts={SINGAPORE_DISTRICTS}
-                selectedDistrict={selectedDistrict}
-                onSelectDistrict={(id) => setSelectedDistrictId(id)}
-                propertyType={propertyType}
-                setPropertyType={setPropertyType}
-                budgetRange={budgetRange}
-                setBudgetRange={setBudgetRange}
-                transactionMode={transactionMode}
-                setTransactionMode={setTransactionMode}
-                sentimentAlerts={INITIAL_SENTIMENT_ALERTS}
-                onOpenDeepDive={(district) => setDeepDiveDistrict(district)}
-                onOpenAffordabilityModal={() => setDeepDiveDistrict(selectedDistrict)}
-                onOpenReturnsModal={() => setActiveTab('analytics')}
-              />
+              <>
+                <MarketTrendsView
+                  districts={SINGAPORE_DISTRICTS}
+                  selectedDistrict={selectedDistrict}
+                  onSelectDistrict={(id) => setSelectedDistrictId(id)}
+                  propertyType={propertyType}
+                  setPropertyType={setPropertyType}
+                  budgetRange={budgetRange}
+                  setBudgetRange={setBudgetRange}
+                  transactionMode={transactionMode}
+                  setTransactionMode={setTransactionMode}
+                  sentimentAlerts={INITIAL_SENTIMENT_ALERTS}
+                  onOpenDeepDive={(district) => setDeepDiveDistrict(district)}
+                  onOpenAffordabilityModal={() => setDeepDiveDistrict(selectedDistrict)}
+                  onOpenReturnsModal={() => setActiveTab('analytics')}
+                />
+                <DisqusForum
+                  pageIdentifier={`propintel-district-${selectedDistrict.id}`}
+                  title={`${selectedDistrict.name} (${selectedDistrict.id}) Community Discussion`}
+                />
+              </>
             )}
 
             {activeTab === 'overview' && (
-              <OverviewView
-                districts={SINGAPORE_DISTRICTS}
-                onSelectDistrict={(id) => {
-                  setSelectedDistrictId(id);
-                  setActiveTab('market-trends');
-                }}
-              />
+              <>
+                <OverviewView
+                  districts={SINGAPORE_DISTRICTS}
+                  onSelectDistrict={(id) => {
+                    setSelectedDistrictId(id);
+                    setActiveTab('market-trends');
+                  }}
+                />
+                <DisqusForum
+                  pageIdentifier="propintel-singapore-overview"
+                  title="Singapore Real Estate Macro Discussion"
+                />
+              </>
             )}
 
-            {activeTab === 'portfolio' && <PortfolioView />}
+            {activeTab === 'portfolio' && (
+              <>
+                <PortfolioView />
+                <DisqusForum
+                  pageIdentifier="propintel-portfolio-discussion"
+                  title="Institutional Portfolio Strategy Discussion"
+                />
+              </>
+            )}
 
-            {activeTab === 'analytics' && <AnalyticsView />}
+            {activeTab === 'analytics' && (
+              <>
+                <AnalyticsView />
+                <DisqusForum
+                  pageIdentifier="propintel-analytics-discussion"
+                  title="Institutional Analytics & Market Forecast Forum"
+                />
+              </>
+            )}
+
+            {activeTab === 'discussion' && (
+              <DisqusForum
+                pageIdentifier="propintel-main-forum"
+                title="PropIntel SG Main Discussion Forum"
+              />
+            )}
           </div>
         </main>
       </div>
