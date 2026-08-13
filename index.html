@@ -5,6 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>PropIntel SG - District Insights & Real Estate Terminal</title>
     <meta name="description" content="Institutional Singapore property market insights, district attractiveness heatmap, and analytics terminal." />
+    <script>
+      // Suppress cross-origin third-party script errors (e.g. Disqus) from crashing dev overlay
+      window.addEventListener('error', function (event) {
+        if (
+          event.message === 'Script error.' ||
+          (event.filename && (event.filename.includes('disqus') || event.filename.includes('count.js')))
+        ) {
+          event.stopImmediatePropagation();
+          event.preventDefault();
+          return true;
+        }
+      }, true);
+      window.addEventListener('unhandledrejection', function (event) {
+        if (
+          event.reason &&
+          (event.reason.message === 'Script error.' ||
+            String(event.reason).includes('disqus') ||
+            String(event.reason).includes('Script error'))
+        ) {
+          event.stopImmediatePropagation();
+          event.preventDefault();
+          return true;
+        }
+      }, true);
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
