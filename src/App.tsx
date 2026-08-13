@@ -7,6 +7,7 @@ import { MarketTrendsView } from './components/MarketTrendsView';
 import { OverviewView } from './components/OverviewView';
 import { PortfolioView } from './components/PortfolioView';
 import { AnalyticsView } from './components/AnalyticsView';
+import { CommunityView } from './components/CommunityView';
 import { DisqusForum } from './components/DisqusForum';
 import { DeepDiveModal } from './components/DeepDiveModal';
 import { ExportReportModal } from './components/ExportReportModal';
@@ -52,6 +53,8 @@ export default function App() {
         return 'Portfolio Tracker';
       case 'analytics':
         return 'Institutional Analytics';
+      case 'community':
+        return 'Community Forum';
       case 'discussion':
         return 'Discussion Forum';
       default:
@@ -145,6 +148,8 @@ export default function App() {
                 />
               </>
             )}
+
+            {activeTab === 'community' && <CommunityView />}
 
             {activeTab === 'discussion' && (
               <DisqusForum
